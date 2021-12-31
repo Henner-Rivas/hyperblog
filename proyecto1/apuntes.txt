@@ -1,0 +1,270 @@
+#Curso Profesional de git y githup
+
+git init- inicializa el repositorio de git
+
+git add . – Agrega todos los cambios en todos los archivos al área de staging
+
+git commit -m  "versión 1"  -Agrega definitivamente los cambios hechos al repositorio, se puede poner un comentario para indicar que cambió
+
+git status – Para ver el estado de la BD sí se han hecho cambios, pero no se han agregado, ahí saldrá
+
+git show - Muestra todos los cambios históricos hechos y sus detalles (qé cambió, cuándo y quién los hizo)
+
+Git diff: comparar dos versiones- el orden de analizar la informaion, cambia dependiendo el dor que pongamos las dos versiones.
+
+Ej: Git diff c234681654404b49b5d48e1327ea6f011d994f73 c234681654404b49b5d48e1327ea6f011d994f73 
+ Tambien podemos utilizar git diff solamente para poder ver los cambios realizados a los archivos 
+
+
+git push -envía los cambios al repositorio remoto
+
+git pull -Agrega los cambios del commit más nuevo al repositorio local
+Git rm --cached historia.txt
+
+Comandos Principales
+
+pwd nos muestra el path o ruta de la carpeta en donde nos encontramos ubicados
+
+cd me permite acceder (entrar) a una carpeta en un nivel o varios niveles
+
+cd .. me permite salir de una carpeta en un nivel o varios niveles OJO los dos puntos deben ser separados por un espacio del comando cd
+
+ls me muestra los archivos que contiene una carpeta, puede ser la ubicación actual o una ruta especifica, no muestra los archivos ocultos
+
+ls -a me muestra los archivos que contiene una carpeta, puede ser la ubicación actual o una ruta especifica, incluyendo los archivos ocultos
+
+ls -l me lista los archivos que contiene una carpeta con sus atributos, puede ser la ubicación actual o una ruta especifica, no muestra los archivos ocultos
+
+ls -la me lista los archivos que contiene una carpeta con sus atributos, puede ser la ubicación actual o una ruta especifica, incluyendo los archivos ocultos
+
+ crtl + L - clear limpiar la consola o terminal, o un shorcut
+
+mkdir <nombre carpeta> nos permite crear una carpeta
+
+touch <nombre del archivo> nos permite crear un archivo
+
+cat <nombre del archivo> me permite visualizar el contenido del un archivo y lo muestra en el terminal
+
+history nos muestra un historial de los comandos que hemos utilizado
+
+rm <nombre del archivo> me permite borrar un archivo
+
+
+ Ciclo básico de trabajo en Git
+
+
+Que es un brach(rama) y como funciona un merge en git 
+
+Branch: Se puede ver como el mapa linal de los commit como un mapa lineal de tiempo, es posible crear nuevas ramas para realizar modificaciones de nuestro codigo sin afectar la rama principal.
+
+Marge: es el comando que se usa para inir dos ramas, generalmente los merge se hacen desde la rama master, se debe tomar en cuenta que puede haber conflicto entre las ramas.
+
+
+Volver en el tiempo en nuestro repositorio utilizando reset y checkout
+
+Si quieres  "Volver en el tiempo" y ver los cambios que has realizado en tus archivos utiliza git checkout, este comando te deja ver el archivo, modificarlo y si quieres guardar los cambios. Estando en el commit seleccionado te da la posiblidad de crear un rama nueva para interfeir con la rama principal, utilizando el comando git switch -c <new-branch-name>.
+---git log
+Git checkout c234681654404b49b5d48e1327ea6f011d994f73 historia.html 
+
+Tambien puedes use git reset  con los atributos -hard o -soft para "regresar en el timepo " pero borrando los commits posteriones. Con -hard borras todo incluso lo que esta en el area de staging y con -soft tambien borra todo pero no los cambios que dejaste en staging
+
+---git log
+
+Git reset c234681654404b49b5d48e1327ea6f011d994f73  --hard
+
+git reset HEAD: Este es el comando para sacar archivos del área de staging. No para borrarlos ni nada de eso, solo para que los últimos cambios de estos archivos no se envíen al último commit, a menos que cambiemos de opinión y los incluyamos de nuevo en staging con git add, por supuesto.
+Apuntes.
+
+Introducción a las ramas o branches de Git
+
+Las ramas son la forma de hacer cambios en nuestro proyecto sin afectar el flujo de trabajo de la rama principal. Esto porque queremos trabajar una parte muy específica de la aplicación o simplemente experimentar.
+
+La cabecera o HEAD representan la rama y el commit de esa rama donde estamos trabajando. Por defecto, esta cabecera aparecerá en el último commit de nuestra rama principal. Pero podemos cambiarlo al crear una rama 
+git branch rama
+can
+git checkout rama, para elegir una rama 
+
+
+git checkout -b rama
+o movernos en el tiempo a cualquier otro commit de cualquier otra rama con los comandos (git reset id-commit, git checkout rama-o-id-commit).
+
+
+Fusión de ramas con Git merge
+
+Git  commit -am "Finalizada la cabecera diseño azul"- para hacer un commit cuando este en otra cabecera 
+
+El comando git merge nos permite crear un nuevo commit con la combinación de dos ramas (la rama donde nos encontramos cuando ejecutamos el comando y la rama que indiquemos después del comando).
+git merge cabecera -m "git merge Cabecera" 
+
+Uso de GitHub
+
+GitHub es una plataforma que nos permite guardar repositorios de Git que podemos usar como servidores remotos y ejecutar algunos comandos de forma visual e interactiva (sin necesidad de la consola de comandos).
+
+ 1- Guardar la URL del repositorio de GitHub
+
+ git remote add origin https://github.com/Henner-Rivas/hyperblog.git - 
+
+	2- Verificar que la URL se haya guardado correctamente
+	git remote 
+	git remote -v
+	
+	3- Traer la version del repositorio remoto y hacer merge para crear un commit con los archivos de ambas partes. Podemos usar git fech y git merge
+	
+	git pull origin main--allow-unrelated-histories 
+	
+	
+	
+	4- Por ultimo, Ahora si ponemos hacer git push para guardar los cambios de nuestro repositorio loca en GitHub 
+
+Git push origin master:main
+
+Nota: salir de la pantalla cuando no hacer el -m  en el commit: i despues se escribe :x!
+
+Cómo funcionan las llaves públicas y privadas
+
+Las llaves públicas y privadas nos ayudan a cifrar y descifrar nuestros archivos de forma que los podamos compartir sin correr el riesgo de que sean interceptados por personas con malas intenciones.
+
+Configura tus llaves SSH en local
+
+Primer paso: Generar tus llaves SSH. Recuerda que es muy buena idea proteger tu llave privada con una contraseña.
+
+ssh-keygen -t rsa -b 4096 -C- "tu@email.com"
+
+Segundo paso: Terminar de configurar nuestro sistema.
+
+ Encender el "servidor" de llaves SSH de tu computadora:
+eval $(ssh-agent -s)
+
+ Añadir tu llave SSH a este "servidor":
+ssh-add   ruta-donde-guardaste-tu-llave-privada
+
+
+Conexión a GitHub con SSH
+
+Luego de crear nuestras llaves SSH podemos entregarle la llave pública a GitHub para comunicarnos de forma segura y sin necesidad de escribir nuestro usuario y contraseña todo el tiempo
+
+Ahora podemos actualizar la URL que guardamos en nuestro repositorio remoto, solo que, en vez de guardar la URL con HTTPS, vamos a usar la URL con SSH:
+
+git remote set-url origin url-ssh-del-repositorio-en-github
+
+Git remote -v:  verifica la existencia del origen remoto 
+Git push origin master:main: fusiona una copia del master local con el remoto
+Git pull origin  main:master: fusiona una copia de main co el local master 
+
+Tags y versiones en Git y GitHub
+
+Los tags o etiquetas nos permiten asignar versiones a los commits con cambios más importantes o significativos de nuestro proyecto.
+
+Comandos para trabajar con etiquetas:
+
+Crear un nuevo tag y asignarlo a un commit: git tag -a nombre-del-tag id-del-commit.
+Borrar un tag en el repositorio local: git tag -d nombre-del-tag.
+Listar los tags de nuestro repositorio local: git tag o git show-ref --tags.
+Publicar un tag en el repositorio remoto: git push origin --tags.
+Borrar un tag del repositorio remoto: git tag -d nombre-del-tag y git push origin :refs/tags/nombre-del-tag.
+
+Manejo de ramas en GitHub
+Podes  trabajar con ramas que nunca envías a GitHub, así como pueden haber ramas importantes en GitHub que nunca usas en el repositorio local. Lo importante es que aprendas a manejarlas para trabajar profesionalmente.
+
+Crear una rama en el repositorio local: 
+git branch nombre-de-la-rama o git checkout -b nombre-de-la-rama.
+Publicar una rama local al repositorio remoto: git push origin nombre-de-la-rama.
+
+Configurar múltiples colaboradores en un repositorio de GitHub
+
+Por defecto, cualquier persona puede clonar o descargar tu proyecto desde GitHub, pero no pueden crear commits, ni ramas, ni nada.
+
+Existen varias formas de solucionar esto para poder aceptar contribuciones. Una de ellas es añadir a cada persona de nuestro equipo como colaborador de nuestro repositorio.
+
+Solo debemos entrar a la configuración de colaboradores de nuestro proyecto (Repositorio > Settings > Collaborators) y añadir el email o username de los nuevos colaboradores
+
+
+
+Utilizando Pull Requests en GitHub
+
+ PullRequest se puede hacer un review para analizar los commits y cambios, esto permite entender qué es lo que se espera fusionar.
+
+-Si un PullRequest no es aprobado, se deben realizar los cambios, hacer un pull y luego si un push para que se vuelvan a evaluar.
+
+-Si un PullRequest es aprobado, pasa a la siguiente etapa de hacer merge. Este merge es semejante a un commit.
+
+
+Forks
+Es una característica única de GitHub en la que se crea una copia exacta del estado actual de un repositorio directamente en GitHub, éste repositorio podrá servir como otro origen y se podrá clonar (como cualquier otro repositorio), en pocas palabras, lo podremos utilizar como un git cualquiera
+
+Al hacer un fork de un poryecto en GitHub, te conviertes en dueñ@ del repositorio fork, puedes trabajar en éste con todos los permisos, pero es un repositorio completamente diferente que el original, teniendo alguna historia en común.
+
+Ignorar archivos en el repositorio con .gitignore
+
+No todos los archivos que agregas a un proyecto deberían ir a un repositorio, por ejemplo cuando tienes un archivo donde están tus contraseñas que comúnmente tienen la extensión .env o cuando te estás conectando a una base de datos; son archivos que nadie debe ver.
+
+Git Rebase: reorganizando el trabajo realizado
+
+rebase reescribe la historia del repositorio, cambia la historia de donde comenzó la rama y solo debe ser usado de manera local.
+
+Con rebase puedes recoger todos los cambios confirmados en una rama y ponerlos sobre otra.
+
+Cambiamos a la rama que queremos traer los cambios
+git checkout experiment
+
+Aplicamos rebase para traer los cambios de la rama que queremos 
+git rebase master
+
+Git Stash: Guardar cambios en memoria y recuperarlos después
+
+Cuando necesitamos regresar en el tiempo porque borramos alguna línea de código pero no queremos pasarnos a otra rama porque nos daría un error ya que debemos pasar ese “mal cambio” que hicimos a stage, podemos usar git stash para regresar el cambio anterior que hicimos
+
+Git Clean: limpiar tu proyecto de archivos no deseados
+
+A veces creamos archivos cuando estamos realizando nuestro proyecto que realmente no forman parte de nuestro directorio de trabajo, que no se deberían agregar y lo sabemos.
+
+Para saber qué archivos vamos a borrar tecleamos git clean --dry-run
+Para borrar todos los archivos listados (que no son carpetas) tecleamos git clean -f
+
+Git cherry-pick: traer commits viejos al head de un branch
+
+
+Ver ramas y commit  en una linea; git log --oneline
+
+
+Existe un mundo alternativo en el cual vamos avanzando en una rama pero necesitamos en master uno de esos avances de la rama, para eso utilizamos el comando git cherry-pick IDCommit.
+
+cherry-pick es una mala práctica porque significa que estamos reconstruyendo la historia, usa cherry-pick con sabiduría. Si no sabes lo que estás haciendo ten mucho cuidado.
+
+Reconstruir commits en Git con amend
+A veces hacemos un commit, pero resulta que no queríamos mandarlo porque faltaba algo más. Utilizamos git commit --amend, amend en inglés es remendar y lo que hará es que los cambios que hicimos nos los agregará al commit anterior.
+
+Git Reset y Reflog: úsese en caso de emergencia
+
+
+¿Qué pasa cuando todo se rompe y no sabemos qué está pasando? Con git reset HashDelHEAD nos devolveremos al estado en que el proyecto funcionaba.
+
+git reset --soft HashDelHEAD te mantiene lo que tengas en staging ahí.
+
+git reset --hard HashDelHEAD resetea absolutamente todo incluyendo lo que tengas en staging.
+
+git reset es una mala práctica, no deberías usarlo en ningún momento; debe ser nuestro último recurso.
+
+Buscar en archivos y commits de Git con Grep y log
+
+
+A medida que nuestro proyecto se hace grande vamos a querer buscar ciertas cosas.
+
+Por ejemplo: ¿cuántas veces en nuestro proyecto utilizamos la palabra color?
+
+Para buscar utilizamos el comando git grep color y nos buscará en todo el proyecto los archivos en donde está la palabra color.
+
+Con git grep -n color nos saldrá un output el cual nos dirá en qué línea está lo que estamos buscando.
+Con git grep -c color nos saldrá un output el cual nos dirá cuántas veces se repite esa palabra y en qué archivo.
+Si queremos buscar cuántas veces utilizamos un atributo de HTML lo hacemos con git grep -c "<p>".
+
+Comandos y recursos colaborativos en Git y GitHub
+
+git shortlog -sn = muestra cuantos commit han hecho cada miembros del equipo.
+git shortlog -sn --all = muestra cuantos commit han hecho cada miembros del equipo hasta los que han sido eliminado
+git shortlog -sn --all --no-merge = muestra cuantos commit han hecho cada miembros quitando los eliminados sin los merges
+git blame ARCHIVO = muestra quien hizo cada cosa linea por linea
+git COMANDO --help = muestra como funciona el comando.
+git blame ARCHIVO -Llinea_inicial,linea_final= muestra quien hizo cada cosa linea por linea indicándole desde que linea ver ejemplo -L35,50
+**git branch -r **= se muestran todas las ramas remotas
+git branch -a = se muestran todas las ramas tanto locales como remotas
